@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Exam Portal - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="glass-panel auth-box">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h1 class="brand">Nexus Exams</h1>
+                <p>Welcome to the ultimate assessment platform.</p>
+            </div>
+
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="tab-login" onclick="toggleAuthMode('login')">Log In</div>
+                <div class="auth-tab" id="tab-register" onclick="toggleAuthMode('register')">Register</div>
+            </div>
+
+            <div id="alert-box" class="alert hidden"></div>
+
+            <!-- LoginForm -->
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="register-form" class="hidden">
+                <div class="form-group">
+                    <label for="reg-name">Full Name</label>
+                    <input type="text" id="reg-name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email Address</label>
+                    <input type="email" id="reg-email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="reg-role">I am a...</label>
+                    <select id="reg-role" required>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Password</label>
+                    <input type="password" id="reg-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/db.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Check if already logged in and redirect
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = window.DB.getCurrentUser();
+            if (user) {
+                window.location.href = user.role === 'teacher' ? 'teacher-dashboard.html' : 'student-dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>

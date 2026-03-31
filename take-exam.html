@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Exam - Nexus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .fixed-timer {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0 0 16px 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="exam-dashboard" class="container" style="display: none; max-width: 800px; padding-top: 0;">
+        
+        <div class="fixed-timer glass-panel">
+            <div>
+                <h2 id="exam-title" style="margin-bottom: 0;">Exam Title</h2>
+                <p id="exam-subtitle" style="font-size: 0.9rem;">Teacher Name</p>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Time Remaining</div>
+                <div id="timer-display" class="timer">00:00</div>
+            </div>
+        </div>
+
+        <form id="exam-form" style="margin-top: 2rem;">
+            <div id="questions-container">
+                <!-- Injected via exam.js -->
+            </div>
+
+            <div class="glass-panel" style="padding: 2rem; text-align: center; margin-top: 2rem;">
+                <p style="margin-bottom: 1rem;">Please review your answers before submitting.</p>
+                <button type="submit" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.1rem;">Submit Assessment</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Error View -->
+    <div id="error-view" class="container auth-container hidden">
+        <div class="glass-panel auth-box" style="text-align: center;">
+            <h2 style="color: var(--danger)">Access Denied</h2>
+            <p id="error-message">You cannot access this exam.</p>
+            <button class="btn btn-primary" style="margin-top: 2rem;" onclick="window.location.href='student-dashboard.html'">Return to Dashboard</button>
+        </div>
+    </div>
+    
+    <!-- Success View -->
+    <div id="success-view" class="container auth-container hidden">
+        <div class="glass-panel auth-box" style="text-align: center;">
+            <h2 style="color: var(--success)">Exam Submitted!</h2>
+            <h1 id="score-display" style="font-size: 4rem; margin: 1rem 0;">0%</h1>
+            <p id="score-details" style="font-size: 1.2rem;">You scored X out of Y</p>
+            <button class="btn btn-primary" style="margin-top: 2rem;" onclick="window.location.href='student-dashboard.html'">Return to Dashboard</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/db.js"></script>
+    <script src="js/exam.js"></script>
+</body>
+</html>

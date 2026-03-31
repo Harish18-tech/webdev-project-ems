@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Nexus Exams</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="glass-panel" style="margin: 1rem 2rem;">
+        <div class="brand">Nexus Exams | Student</div>
+        <div class="nav-links" style="display: flex; align-items: center; gap: 1rem;">
+            <span id="user-name-display" style="font-weight: 500;"></span>
+            <button onclick="window.DB.logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Tabs for Student Dashboard -->
+        <div class="auth-tabs glass-panel" style="padding: 0 1rem; margin-bottom: 2rem;">
+            <div class="auth-tab active" id="tab-available" onclick="switchStudentTab('available')">Available Exams</div>
+            <div class="auth-tab" id="tab-results" onclick="switchStudentTab('results')">My Results</div>
+        </div>
+
+        <!-- Available Exams Section -->
+        <div id="section-available">
+            <h2 style="margin-bottom: 1.5rem;">Assessments</h2>
+            <div id="available-tests-list" class="dashboard-grid">
+                <!-- Dynamically populated via student.js -->
+            </div>
+        </div>
+
+        <!-- My Results Section -->
+        <div id="section-results" class="hidden">
+            <h2 style="margin-bottom: 1.5rem;">Past Performances</h2>
+            <div class="glass-panel" style="padding: 1.5rem; overflow-x: auto;">
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Exam Title</th>
+                            <th>Teacher</th>
+                            <th>Completed At</th>
+                            <th>Score</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-results-tbody">
+                        <!-- Populated via student.js -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/db.js"></script>
+    <script src="js/student.js"></script>
+</body>
+</html>

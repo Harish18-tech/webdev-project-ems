@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Nexus Exams</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="glass-panel" style="margin: 1rem 2rem;">
+        <div class="brand">Nexus Exams | Teacher</div>
+        <div class="nav-links" style="display: flex; align-items: center; gap: 1rem;">
+            <span id="user-name-display" style="font-weight: 500;"></span>
+            <button onclick="window.DB.logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Tabs for Teacher Dashboard -->
+        <div class="auth-tabs glass-panel" style="padding: 0 1rem; margin-bottom: 2rem;">
+            <div class="auth-tab active" id="tab-my-tests" onclick="switchTeacherTab('my-tests')">My Tests & Results</div>
+            <div class="auth-tab" id="tab-create-test" onclick="switchTeacherTab('create-test')">Create New Test</div>
+        </div>
+
+        <!-- Dashboard / My Tests section -->
+        <div id="section-my-tests">
+            <h2 style="margin-bottom: 1.5rem;">Your Created Tests</h2>
+            <div id="tests-list" class="dashboard-grid">
+                <!-- Dynamically populated via teacher.js -->
+            </div>
+            
+            <!-- Details Modal Placeholder -->
+            <div id="results-view" class="glass-panel hidden" style="margin-top: 2rem; padding: 2rem;">
+                <!-- Dynamically populated via teacher.js when 'View Results' is clicked -->
+            </div>
+        </div>
+
+        <!-- Create Test Section -->
+        <div id="section-create-test" class="glass-panel hidden" style="padding: 2rem;">
+            <h2 style="margin-bottom: 1.5rem;">Create a New Assessment</h2>
+            <form id="create-test-form">
+                <div class="dashboard-grid" style="gap: 1rem;">
+                    <div class="form-group">
+                        <label for="test-title">Exam Title</label>
+                        <input type="text" id="test-title" required placeholder="e.g. Midterm Computer Science">
+                    </div>
+                    <div class="form-group">
+                        <label for="test-time">Time Limit (Minutes)</label>
+                        <input type="number" id="test-time" required min="1" max="180" value="15">
+                    </div>
+                </div>
+
+                <div id="questions-container" style="margin-top: 1rem;">
+                    <!-- Questions will be injected here -->
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="button" class="btn btn-secondary" onclick="addQuestionBlock()">+ Add Question</button>
+                    <button type="submit" class="btn btn-primary" style="margin-left: auto;">Save & Publish Exam</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/db.js"></script>
+    <script src="js/teacher.js"></script>
+</body>
+</html>
